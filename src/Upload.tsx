@@ -1,7 +1,10 @@
-import { Button, Upload } from 'antd';
+import { Button, Input, Upload } from 'antd';
 import type { UploadProps } from 'antd';
+import { useState } from 'react';
 
 const IUpload = ({ query }: any) => {
+  const [s, setS] = useState('ndzy');
+
   const handleChange: UploadProps['onChange'] = (info: any) => {
     if (info.file.status === 'uploading') {
       return;
@@ -9,22 +12,29 @@ const IUpload = ({ query }: any) => {
 
     if (info.file.status === 'done') {
       query();
+      setS('ndzy');
     }
   };
 
   const uploadProps: UploadProps = {
-    action: 'https://ndzy-server.vercel.app/imgs/upload',
+    action: 'https://ndzy-service-89589-7-1307521321.sh.run.tcloudbase.com/imgs',
     name: 'file',
     headers: {
       authorization: 'authorization-text',
     },
     onChange: handleChange,
+    data: { name: s },
   };
 
   return (
-    <Upload {...uploadProps}>
-      <Button type="primary">上传</Button>
-    </Upload>
+    <>
+      <Input value={s} onChange={(e) => setS(e.target.value)} />
+      <Upload {...uploadProps} disabled={s === 'ndzy' || !s}>
+        <Button type="primary" disabled={s === 'ndzy' || !s}>
+          上传
+        </Button>
+      </Upload>
+    </>
   );
 };
 

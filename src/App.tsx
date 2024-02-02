@@ -49,10 +49,13 @@ const App = () => {
       width: 60,
       render(value) {
         return (
-          <Image
-            style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
-            src={value}
-          />
+          <>
+            {value}
+            <Image
+              style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
+              src={value}
+            />
+          </>
         );
       },
     },
@@ -103,10 +106,13 @@ const App = () => {
               >
                 <List.Item.Meta
                   title={
-                    <Image
-                      style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
-                      src={item.url}
-                    />
+                    <>
+                      {item.url}
+                      <Image
+                        style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
+                        src={item.url}
+                      />
+                    </>
                   }
                   description={item.github}
                 />
