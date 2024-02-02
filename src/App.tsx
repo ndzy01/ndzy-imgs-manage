@@ -1,12 +1,12 @@
 import { useMount, useSetState, useSize } from 'ahooks';
-// import { Button, Popconfirm, Table, List, Image } from 'antd';
-import { Table, List, Image } from 'antd';
+import { Button, Popconfirm, Table, List, Image, Typography } from 'antd';
 import type { TableProps } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { useRef } from 'react';
 import { service } from './http';
 import IUpload from './Upload';
 
+const { Paragraph } = Typography;
 const App = () => {
   const ContainerHeight = 600;
   const ref = useRef(null);
@@ -27,16 +27,16 @@ const App = () => {
       });
   };
 
-  // const del = (id: string) => {
-  //   setS({ loading: true });
-  //   service({ url: `/imgs/${id}`, method: 'DELETE' })
-  //     .then(() => {
-  //       query();
-  //     })
-  //     .catch(() => {
-  //       setS({ loading: false });
-  //     });
-  // };
+  const del = (id: string) => {
+    setS({ loading: true });
+    service({ url: `/imgs/${id}`, method: 'DELETE' })
+      .then(() => {
+        query();
+      })
+      .catch(() => {
+        setS({ loading: false });
+      });
+  };
 
   useMount(() => {
     query();
@@ -50,7 +50,7 @@ const App = () => {
       render(value) {
         return (
           <>
-            {value}
+            <Paragraph copyable> {value}</Paragraph>
             <Image
               style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
               src={value}
@@ -65,16 +65,16 @@ const App = () => {
       dataIndex: 'github',
       width: 120,
     },
-    // {
-    //   title: '操作',
-    //   width: 20,
-    //   fixed: 'right',
-    //   render: (_text, record: any) => (
-    //     <Popconfirm title="删除将无法恢复,确定删除?" onConfirm={() => del(record.id)}>
-    //       <Button type="link"> 删除</Button>
-    //     </Popconfirm>
-    //   ),
-    // },
+    {
+      title: '操作',
+      width: 20,
+      fixed: 'right',
+      render: (_text, record: any) => (
+        <Popconfirm title="删除将无法恢复,确定删除?" onConfirm={() => del(record.id)}>
+          <Button type="link"> 删除</Button>
+        </Popconfirm>
+      ),
+    },
   ];
 
   return (
@@ -98,16 +98,17 @@ const App = () => {
             {(item) => (
               <List.Item
                 key={item.id}
-                // actions={[
-                //   <Popconfirm title="删除将无法恢复,确定删除?" onConfirm={() => del(item.id)}>
-                //     <Button type="link"> 删除</Button>
-                //   </Popconfirm>,
-                // ]}
+                actions={[
+                  <Popconfirm title="删除将无法恢复,确定删除?" onConfirm={() => del(item.id)}>
+                    <Button type="link"> 删除</Button>
+                  </Popconfirm>,
+                ]}
               >
                 <List.Item.Meta
                   title={
                     <>
-                      {item.url}
+                      <Paragraph copyable>{item.url}</Paragraph>
+
                       <Image
                         style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
                         src={item.url}
