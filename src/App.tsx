@@ -50,7 +50,7 @@ const App = () => {
       render(value) {
         return (
           <>
-            <Paragraph copyable> {value}</Paragraph>
+            <Paragraph copyable>{value}</Paragraph>
             <Image
               style={{ minWidth: 100, minHeight: 100, maxWidth: 100, maxHeight: 100, margin: '16px 32px' }}
               src={value}
