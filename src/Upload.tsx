@@ -16,11 +16,12 @@ const IUpload = ({ query }: any) => {
     }
   };
 
+  const token = localStorage.getItem('token');
   const uploadProps: UploadProps = {
     action: 'https://ndzy-service-89589-7-1307521321.sh.run.tcloudbase.com/imgs',
     name: 'file',
     headers: {
-      authorization: 'authorization-text',
+      authorization: 'Basic' + ' ' + token,
     },
     onChange: handleChange,
     data: { name: s },
