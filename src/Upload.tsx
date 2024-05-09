@@ -18,7 +18,7 @@ const IUpload = ({ query }: any) => {
 
   const token = localStorage.getItem('token');
   const uploadProps: UploadProps = {
-    action: 'https://ndzy-service-89589-7-1307521321.sh.run.tcloudbase.com/imgs',
+    action: 'https://ndzy-s.vercel.app/imgs',
     name: 'file',
     headers: {
       authorization: 'Basic' + ' ' + token,

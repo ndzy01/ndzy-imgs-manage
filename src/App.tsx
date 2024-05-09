@@ -3,9 +3,10 @@ import { Button, Popconfirm, Table, List, Image, Typography } from 'antd';
 import type { TableProps } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { useRef } from 'react';
-import service from './http';
 import IUpload from './Upload';
+import { createAxiosInstance } from 'ndzy-utils';
 
+const service = createAxiosInstance('https://ndzy-s.vercel.app');
 const { Paragraph } = Typography;
 const App = () => {
   const ContainerHeight = 600;
