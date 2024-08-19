@@ -99,7 +99,12 @@ const App = () => {
               <List.Item
                 key={item.id}
                 actions={[
-                  <Popconfirm title="删除将无法恢复,确定删除?" onConfirm={() => del(item.id)}>
+                  <Popconfirm
+                    title="删除将无法恢复,确定删除?"
+                    onConfirm={() => del(item.id)}
+                    okText="确定"
+                    cancelText="取消"
+                  >
                     <Button type="link"> 删除</Button>
                   </Popconfirm>,
                 ]}
