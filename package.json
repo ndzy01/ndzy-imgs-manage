@@ -13,7 +13,7 @@
   "dependencies": {
     "ahooks": "^3.7.8",
     "antd": "^5.13.2",
-    "ndzy-utils": "^1.1.19",
+    "ndzy-utils": "^0.0.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

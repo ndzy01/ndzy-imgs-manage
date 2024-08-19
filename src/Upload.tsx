@@ -3,7 +3,7 @@ import type { UploadProps } from 'antd';
 import { useState } from 'react';
 
 const IUpload = ({ query }: any) => {
-  const [s, setS] = useState('ndzy');
+  const [s, setS] = useState('');
 
   const handleChange: UploadProps['onChange'] = (info: any) => {
     if (info.file.status === 'uploading') {
@@ -12,7 +12,7 @@ const IUpload = ({ query }: any) => {
 
     if (info.file.status === 'done') {
       query();
-      setS('ndzy');
+      setS('');
     }
   };
 
@@ -28,14 +28,19 @@ const IUpload = ({ query }: any) => {
   };
 
   return (
-    <>
-      <Input value={s} onChange={(e) => setS(e.target.value)} />
-      <Upload {...uploadProps} disabled={s === 'ndzy' || !s}>
-        <Button type="primary" disabled={s === 'ndzy' || !s}>
-          上传
-        </Button>
-      </Upload>
-    </>
+    <Input
+      style={{ marginBottom: 16 }}
+      placeholder="请输入文件名称 eg: xxx.png"
+      value={s}
+      onChange={(e) => setS(e.target.value)}
+      addonAfter={
+        <Upload {...uploadProps} disabled={!s}>
+          <Button type="primary" disabled={!s}>
+            上传
+          </Button>
+        </Upload>
+      }
+    />
   );
 };
 

@@ -4,12 +4,11 @@ import type { TableProps } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { useRef } from 'react';
 import IUpload from './Upload';
-import { createAxiosInstance } from 'ndzy-utils';
+import { service } from 'ndzy-utils';
 
-const service = createAxiosInstance('https://ndzy-s.vercel.app');
 const { Paragraph } = Typography;
 const App = () => {
-  const ContainerHeight = 600;
+  const ContainerHeight = 800;
   const ref = useRef(null);
   const size = useSize(ref);
   const [s, setS] = useSetState<{ list: any[]; loading: boolean }>({ list: [], loading: false });
@@ -79,15 +78,15 @@ const App = () => {
   ];
 
   return (
-    <div ref={ref} style={{ height: '100%' }}>
-      <IUpload query={query} />
+    <div ref={ref} style={{ height: '100%', padding: 16 }}>
+      <IUpload query={query} imgs={s.list} />
 
       {Number(size?.width) > 800 ? (
         <Table
           loading={s.loading}
           virtual
           columns={columns}
-          scroll={{ x: 800, y: 600 }}
+          scroll={{ x: 1200, y: 900 }}
           rowKey="id"
           dataSource={s.list}
           pagination={false}
